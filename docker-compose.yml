@@ -1,0 +1,16 @@
+version: "3.7"
+
+services:
+  bsinfo-db:
+    image: mysql:latest
+    restart: always
+    ports:
+    - 3306:3306
+    environment:
+      MYSQL_USER: bsinfo
+      MYSQL_PASSWORD: bsinfo
+      MYSQL_ROOT_PASSWORD: root
+    command: --init-file /data/application/init.sql
+    volumes:
+      - ./database/data:/var/lib/mysql
+      - ./database/init.sql:/data/application/init.sql
