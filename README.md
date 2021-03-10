@@ -1,6 +1,8 @@
 # BSINFO ABSCHLUSSPROJEKT
+GRUPPE 2 - KEVIN KRAUS & ABASSIN SALEH
 
-## GRUPPE 2 - KEVIN KRAUS & ABASSIN SALEH
+[![Build Status](https://travis-ci.com/kevin-kraus/bsinfo-ap-project.svg?branch=master)](https://travis-ci.com/kevin-kraus/bsinfo-ap-project)
+[![codecov](https://codecov.io/gh/kevin-kraus/bsinfo-ap-project/branch/master/graph/badge.svg?token=QWJFTTFMS6)](https://codecov.io/gh/kevin-kraus/bsinfo-ap-project)
 
 ---
 
