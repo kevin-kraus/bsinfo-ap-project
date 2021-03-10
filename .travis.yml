@@ -2,8 +2,6 @@ jobs:
   include:
     - stage: test BACKEND
       language: java
-      jdk:
-        - oraclejdk8
       before_script:
         - cd backend/ap-project
         - chmod +x gradlew
