@@ -41,6 +41,22 @@ public class UserControllerIT {
     @Autowired
     private UserRepository userRepository;
 
+    /**
+     * Helper function.
+     *
+     * @return JSON Request Body of a userDbo
+     */
+    private JSONObject generateRequestBody() throws JSONException {
+        final JSONObject requestBody = new JSONObject();
+        requestBody.put("username", "testuser");
+        requestBody.put("password", "testpassword");
+        requestBody.put("firstName", "Test");
+        requestBody.put("lastName", "User");
+        requestBody.put("emailAddress", "integrationtest@test.de");
+        requestBody.put("userType", "ADMIN");
+        return requestBody;
+    }
+
 
     /**
      * End-to-End Test if user is correctly created.
@@ -49,13 +65,7 @@ public class UserControllerIT {
     @DirtiesContext(classMode = DirtiesContext.ClassMode.BEFORE_EACH_TEST_METHOD)
     public void shouldCreateUser() throws JSONException, UserAlreadyExistsException {
         // Request Setup
-        final JSONObject requestBody = new JSONObject();
-        requestBody.put("username", "testuser");
-        requestBody.put("password", "testpassword");
-        requestBody.put("firstName", "Test");
-        requestBody.put("lastName", "User");
-        requestBody.put("emailAddress", "integrationtest@test.de");
-        requestBody.put("userType", "ADMIN");
+        JSONObject requestBody = generateRequestBody();
         final HttpHeaders headers = new HttpHeaders();
         headers.add("Content-Type", "application/json;charset=UTF-8");
         final HttpEntity<Object> requestEntity = new HttpEntity<>(requestBody.toString(), headers);
@@ -85,13 +95,7 @@ public class UserControllerIT {
     @Test
     public void shouldReturn409OnExistingUser() throws JSONException, UserAlreadyExistsException {
         // Request Setup
-        final JSONObject requestBody = new JSONObject();
-        requestBody.put("username", "testuser");
-        requestBody.put("password", "testpassword");
-        requestBody.put("firstName", "Test");
-        requestBody.put("lastName", "User");
-        requestBody.put("emailAddress", "integrationtest@test.de");
-        requestBody.put("userType", "ADMIN");
+        JSONObject requestBody = generateRequestBody();
         final HttpHeaders headers = new HttpHeaders();
         headers.add("Content-Type", "application/json;charset=UTF-8");
         final HttpEntity<Object> requestEntity = new HttpEntity<>(requestBody.toString(), headers);
@@ -164,7 +168,7 @@ public class UserControllerIT {
      */
     @Test
     @DirtiesContext(classMode = DirtiesContext.ClassMode.BEFORE_EACH_TEST_METHOD)
-    public void shouldReturn404OnNotFound() throws JSONException, UserNotFoundException {
+    public void shouldReturn404OnNotFound() throws UserNotFoundException {
         // Request Setup
         final JSONObject requestBody = new JSONObject();
         final HttpHeaders headers = new HttpHeaders();
@@ -190,7 +194,7 @@ public class UserControllerIT {
      */
     @Test
     @DirtiesContext(classMode = DirtiesContext.ClassMode.BEFORE_EACH_TEST_METHOD)
-    public void shouldReturnUser() throws JSONException, UserNotFoundException {
+    public void shouldReturnUser() throws UserNotFoundException {
         // Save user object, so that user exists
         UserDbo existingUser = new UserDbo();
         existingUser.setId(1L);
@@ -220,7 +224,7 @@ public class UserControllerIT {
      * End-to-End Test if user is correctly found in the Database.
      */
     @Test
-    public void shouldReturn404OnNotFoundUser() throws JSONException, UserNotFoundException {
+    public void shouldReturn404OnNotFoundUser() throws UserNotFoundException {
         ResponseEntity<String> response =
                 restTemplate.exchange("/api/v1/user/testuser",
                         HttpMethod.GET,
