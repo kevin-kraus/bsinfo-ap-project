@@ -8,5 +8,6 @@ jobs:
       script:
         - ./gradlew check
         - ./gradlew jacocoTestReport
+        - ./gradlew jacocoIntegrationTestReport
       after_success:
         - bash <(curl -s https://codecov.io/bash)
