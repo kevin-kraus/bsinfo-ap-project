@@ -23,7 +23,7 @@ public interface UserApi {
      * @param userDbo The User to be created.
      * @return User which was created.
      */
-    @PutMapping(value = "/api/v1/user")
+    @PostMapping(value = "/api/v1/user")
     UserDbo createUser(@RequestBody UserDbo userDbo) throws UserAlreadyExistsException;
 
     /**
@@ -32,7 +32,7 @@ public interface UserApi {
      * @param userDbo The User to be updated.
      * @return The updated User.
      */
-    @PostMapping(value = "/api/v1/user/{username}")
+    @PutMapping(value = "/api/v1/user/{username}")
     UserDbo updateUser(@PathVariable("username") String username, @RequestBody UserDbo userDbo) throws UserNotFoundException;
 
     /**
