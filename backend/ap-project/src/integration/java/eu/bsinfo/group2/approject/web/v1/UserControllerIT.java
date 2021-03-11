@@ -72,7 +72,7 @@ public class UserControllerIT {
 
         ResponseEntity<String> response =
                 restTemplate.exchange("/api/v1/user",
-                        HttpMethod.PUT,
+                        HttpMethod.POST,
                         requestEntity,
                         String.class);
 
@@ -105,7 +105,7 @@ public class UserControllerIT {
 
         ResponseEntity<String> response =
                 restTemplate.exchange("/api/v1/user",
-                        HttpMethod.PUT,
+                        HttpMethod.POST,
                         requestEntity,
                         String.class);
 
@@ -145,7 +145,7 @@ public class UserControllerIT {
 
         ResponseEntity<String> response =
                 restTemplate.exchange("/api/v1/user/testuser",
-                        HttpMethod.POST,
+                        HttpMethod.PUT,
                         requestEntity,
                         String.class);
 
@@ -177,7 +177,7 @@ public class UserControllerIT {
 
         ResponseEntity<String> response =
                 restTemplate.exchange("/api/v1/user/testuser",
-                        HttpMethod.POST,
+                        HttpMethod.PUT,
                         requestEntity,
                         String.class);
 
