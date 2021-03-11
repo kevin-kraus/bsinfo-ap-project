@@ -82,6 +82,31 @@ task integrationTest(type: Test) {
 	classpath = sourceSets.integration.runtimeClasspath
 }
 
+task jacocoIntegrationTestReport(type: JacocoReport, dependsOn: [test]) {
+	description = "Generates jacodo code coverage report for integration tests."
+	group = "reporting"
+	executionData integrationTest
+	sourceSets sourceSets.main
+	reports {
+		xml.enabled = true
+		html.enabled = false
+	}
+}
+
+task allTestReport(type: JacocoReport) {
+	description = "Generates jacodo code coverage report for integration and unit tests."
+	group = "reporting"
+	executionData test, integrationTest
+	sourceSets sourceSets.main
+	reports {
+		xml.enabled = true
+		html.enabled = false
+	}
+}
+
+
 check.dependsOn(integrationTest)
 integrationTest.mustRunAfter(test)
+
 test.finalizedBy jacocoTestReport
+integrationTest.finalizedBy jacocoIntegrationTestReport
