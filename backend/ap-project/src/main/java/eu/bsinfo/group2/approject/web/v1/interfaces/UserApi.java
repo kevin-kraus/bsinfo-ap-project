@@ -32,7 +32,7 @@ public interface UserApi {
      * @param userDbo The User to be updated.
      * @return The updated User.
      */
-    @PatchMapping(value = "/api/v1/user/{username}")
+    @PostMapping(value = "/api/v1/user/{username}")
     UserDbo updateUser(@PathVariable("username") String username, @RequestBody UserDbo userDbo) throws UserNotFoundException;
 
     /**
