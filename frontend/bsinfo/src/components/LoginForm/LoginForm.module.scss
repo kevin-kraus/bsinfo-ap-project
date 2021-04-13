@@ -1,0 +1,9 @@
+
+.loginFormContainer {
+  background-color: white;
+  border: 2px solid lightgray;
+  padding: 20px;
+  border-radius: 10px;
+  width: clamp(445px, 50vw, 600px);
+  height: clamp(280px, 25vh, 25vh);
+}
