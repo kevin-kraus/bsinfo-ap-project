@@ -5,4 +5,16 @@
     align-items: center;
     width: 100vw;
     height: 100vh;
+
+    .form {
+        display: block;
+
+        .switcher {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 5px;
+        }
+    }
+
+
 }
