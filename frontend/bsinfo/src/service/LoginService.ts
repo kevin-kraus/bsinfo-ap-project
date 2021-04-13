@@ -1,5 +1,5 @@
 import axios from 'axios'
-import {AuthResponse} from "../types/AuthResponse";
+import {UserResponse} from "../types/UserResponse";
 import {ErrorCause} from "../types/ErrorCause";
 
 interface LoginFormData {
@@ -7,7 +7,7 @@ interface LoginFormData {
     password: string
 }
 
-export async function validateLoginData(data: LoginFormData): Promise<AuthResponse> {
+export async function validateLoginData(data: LoginFormData): Promise<UserResponse> {
     const loginUrl = "http://localhost:8080/api/v1/login";
     return await axios({
         method: 'post',
