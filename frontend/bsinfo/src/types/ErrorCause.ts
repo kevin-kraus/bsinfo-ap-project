@@ -1,5 +1,7 @@
 export enum ErrorCause {
     UNAUTHORIZED,
     NOT_FOUND,
-    UNKNOWN
+    UNKNOWN,
+    USER_ALREADY_EXISTS,
+
 }
