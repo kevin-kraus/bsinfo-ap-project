@@ -1,8 +1,8 @@
 import React, {useState} from 'react'
 import styles from "./LoginPage.module.scss"
-import {RegistrationForm} from "../../components/RegistrationForm/RegistrationForm";
-import {LoginForm} from "../../components/LoginForm/LoginForm";
 import Button from "react-bootstrap/Button"
+import {LoginForm} from "../../components/LoginForm/LoginForm";
+import {RegistrationForm} from "../../components/RegistrationForm/RegistrationForm";
 
 export function LoginPage() {
 
@@ -19,11 +19,7 @@ export function LoginPage() {
     return (
         <div className={styles.page}>
             <div className={styles.form}>
-                <div className={styles.switcher}>
-                    <Button className={styles.switcher} variant="info" onClick={switchMode}>
-                        {selectedMode !== "login" ? "Zum Login" : "Zur Registrierung"}
-                    </Button>
-                </div>
+                <div className={styles.header}><h1>{selectedMode === "login" ? "Login" : "Registrierung"}</h1></div>
                 {selectedMode === "login" &&
                 <LoginForm/>
                 }
@@ -31,6 +27,11 @@ export function LoginPage() {
                 {selectedMode === "registration" &&
                 <RegistrationForm/>
                 }
+                <div className={styles.switcher}>
+                    <Button className={styles.switcher} variant="info" onClick={switchMode}>
+                        {selectedMode !== "login" ? "Zum Login" : "Zur Registrierung"}
+                    </Button>
+                </div>
             </div>
         </div>
     )
