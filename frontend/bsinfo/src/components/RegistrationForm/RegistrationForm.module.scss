@@ -9,4 +9,20 @@
   -webkit-box-shadow: 0 10px 50px -5px rgba(0, 0, 0, 0.75);
   -moz-box-shadow: 0 10px 50px -5px rgba(0, 0, 0, 0.75);
   box-shadow: 0 10px 50px -5px rgba(0, 0, 0, 0.75);
+
+  .registrationSuccess {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    height: 100%;
+
+    div {
+      img {
+        height: 100px;
+        width: 100px;
+        margin-bottom: 8px;
+      }
+    }
+  }
 }

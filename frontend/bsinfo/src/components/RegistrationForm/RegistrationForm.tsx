@@ -5,6 +5,7 @@ import styles from './RegistrationForm.module.scss';
 import {UserService} from "../../service/UserService";
 import {UserData} from "../../types/UserData";
 import {ErrorCause} from "../../types/ErrorCause";
+import check from "./assets/check.png";
 
 export function RegistrationForm() {
 
@@ -14,6 +15,7 @@ export function RegistrationForm() {
     const [lastName, setLastName] = useState("");
     const [email, setEmail] = useState("");
     const [usernameTaken, setUsernameTaken] = useState(false)
+    const [registrationSuccess, setSuccess] = useState(false);
     const allFieldsFilled = username === "" || password === "" || firstName === "" || lastName === "" || email === "";
 
     async function registerClickHandler(e: any) {
@@ -33,6 +35,7 @@ export function RegistrationForm() {
                 setUsernameTaken(true);
             }
         } else {
+            setSuccess(true);
             setUsernameTaken(false);
         }
         console.log(result);
@@ -40,6 +43,7 @@ export function RegistrationForm() {
 
     return (
         <div className={styles.registrationFormContainer}>
+            {!registrationSuccess &&
             <Form noValidate onSubmit={registerClickHandler}>
                 <Form.Group controlId="formBasicEmail">
                     <Form.Label><strong>Benutzername</strong></Form.Label>
@@ -82,6 +86,17 @@ export function RegistrationForm() {
                     Registrieren
                 </Button>
             </Form>
+            }
+
+            {registrationSuccess &&
+            <div className={styles.registrationSuccess}>
+                <div>
+                    <img src={check} alt={"check"}/>
+                    <h1>Erfolgreich registriert!</h1>
+                </div>
+            </div>
+            }
+
         </div>
     )
 }
