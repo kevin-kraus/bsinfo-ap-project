@@ -16,7 +16,7 @@ export function RegistrationForm() {
 
     async function registerClickHandler(e: any) {
         e.preventDefault()
-        const form = e.currentTarget;
+        // const form = e.currentTarget;
         const userData: UserData = {
             username: username,
             password: password,
