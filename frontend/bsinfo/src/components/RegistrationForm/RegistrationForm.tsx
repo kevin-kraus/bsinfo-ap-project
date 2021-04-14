@@ -4,6 +4,7 @@ import Button from 'react-bootstrap/Button'
 import styles from './RegistrationForm.module.scss';
 import {UserService} from "../../service/UserService";
 import {UserData} from "../../types/UserData";
+import {ErrorCause} from "../../types/ErrorCause";
 
 export function RegistrationForm() {
 
@@ -12,6 +13,7 @@ export function RegistrationForm() {
     const [firstName, setFirstName] = useState("");
     const [lastName, setLastName] = useState("");
     const [email, setEmail] = useState("");
+    const [usernameTaken, setUsernameTaken] = useState(false)
     const allFieldsFilled = username === "" || password === "" || firstName === "" || lastName === "" || email === "";
 
     async function registerClickHandler(e: any) {
@@ -26,7 +28,13 @@ export function RegistrationForm() {
         }
 
         const result = await UserService.registerNewUser(userData)
-
+        if (!result.success) {
+            if (result.errorCause === ErrorCause.USER_ALREADY_EXISTS) {
+                setUsernameTaken(true);
+            }
+        } else {
+            setUsernameTaken(false);
+        }
         console.log(result);
     }
 
@@ -37,10 +45,14 @@ export function RegistrationForm() {
                     <Form.Label><strong>Benutzername</strong></Form.Label>
                     <Form.Control
                         type="username" onChange={e => setUsername(e.target.value)}
+                        isInvalid={usernameTaken}
                         placeholder="Gebe deinen Benutzernamen ein"/>
                     <Form.Text className="text-muted">
                         Bitte beachte, dass du keine E-Mail Adresse verwenden kannst!
                     </Form.Text>
+                    <Form.Control.Feedback type="invalid">
+                        Dieser Benutzername ist bereits vergeben!
+                    </Form.Control.Feedback>
                 </Form.Group>
                 <Form.Group controlId="formBasicPassword">
                     <Form.Label><strong>Passwort</strong></Form.Label>
