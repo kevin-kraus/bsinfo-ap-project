@@ -5,6 +5,7 @@ import eu.bsinfo.group2.approject.exception.UserAlreadyExistsException;
 import eu.bsinfo.group2.approject.exception.UserNotFoundException;
 import eu.bsinfo.group2.approject.util.SuccessResult;
 
+import java.util.List;
 import java.util.Optional;
 
 public interface UserService {
@@ -16,4 +17,6 @@ public interface UserService {
     SuccessResult deleteUser(String username) throws UserNotFoundException;
 
     Optional<UserDbo> findUser(String username);
+
+    Optional<List<UserDbo>> getAllUser();
 }
