@@ -24,7 +24,7 @@ public interface ContactApi {
     List<ContactSet> getUserContactSets(@PathVariable("username") String username) throws UserNotFoundException;
 
     @PutMapping(value = "/api/v1/user/contact/{username}/{contactSetId}")
-    ContactSet updateContactSet(@PathVariable("username") String username, @PathVariable("contactSetId") Long contactSetId) throws UserNotFoundException, ContactSetNotFoundException;
+    ContactSet updateContactSet(@PathVariable("username") String username, @PathVariable("contactSetId") Long contactSetId, @RequestBody ContactSet update) throws UserNotFoundException, ContactSetNotFoundException;
 
     @DeleteMapping(value = "/api/v1/user/contact/{username}/{contactSetId}")
     SuccessResult deleteContactSet(@PathVariable("username") String username, @PathVariable("contactSetId") Long contactSetId) throws UserNotFoundException, ContactSetNotFoundException;

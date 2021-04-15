@@ -55,8 +55,8 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public Optional<List<UserDbo>> getAllUser() {
-        return userRepository.getAllUser();
+    public List<UserDbo> getAllUser() {
+        return userRepository.findAll();
     }
 
     private Boolean userAlreadyExists(String username) {

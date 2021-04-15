@@ -47,26 +47,29 @@ public class ContactServiceImpl implements ContactService {
     }
 
     @Override
-    public ContactSet updateContactSet(String username, Long contactSetId) throws UserNotFoundException, ContactSetNotFoundException {
+    public ContactSet updateContactSet(String username, Long contactSetId, ContactSet update) throws UserNotFoundException, ContactSetNotFoundException {
         Optional<UserDbo> user = userRepository.findByUsername(username);
         ContactSet contactSet;
         if (user.isPresent()) {
-            if (contactSetRepository.findByContactId(contactSetId) != null) {
-                contactSet = contactSetRepository.findByContactId(contactSetId);
+            if (contactSetRepository.findById(contactSetId).isPresent()) {
+                contactSet = contactSetRepository.findById(contactSetId).get();
+                contactSet.setValue(update.getValue());
+                contactSet.setContactType(update.getContactType());
+                contactSetRepository.save(contactSet);
+                return contactSet;
             } else {
                 throw new ContactSetNotFoundException();
             }
         } else {
             throw new UserNotFoundException();
         }
-        return contactSet;
     }
 
     @Override
     public SuccessResult deleteContactSet(String username, Long contactSetId) throws UserNotFoundException, ContactSetNotFoundException {
         Optional<UserDbo> user = userRepository.findByUsername(username);
         if (user.isPresent()) {
-            if (contactSetRepository.findByContactId(contactSetId) != null) {
+            if (contactSetRepository.findById(contactSetId).isPresent()) {
                 contactSetRepository.deleteById(contactSetId);
                 return SuccessResult.SUCCESSFUL;
             } else {

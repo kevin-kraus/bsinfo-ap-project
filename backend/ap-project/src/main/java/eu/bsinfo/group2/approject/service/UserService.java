@@ -18,5 +18,5 @@ public interface UserService {
 
     Optional<UserDbo> findUser(String username);
 
-    Optional<List<UserDbo>> getAllUser();
+    List<UserDbo> getAllUser();
 }

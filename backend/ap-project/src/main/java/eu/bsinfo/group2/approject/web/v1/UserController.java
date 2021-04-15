@@ -26,9 +26,9 @@ public class UserController extends BaseAbstractController implements UserApi {
         if (user.isEmpty()) throw new UserNotFoundException();
         else return user.get();
     }
-    // TODO: implement getAllUsers
+
     @Override
-    public Optional<List<UserDbo>> getAllUsers() {
+    public List<UserDbo> getAllUsers() {
         return userService.getAllUser();
     }
 

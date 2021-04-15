@@ -52,7 +52,7 @@ public class ContactControllerIT {
     /**
      * Helper function to create Request body
      *
-     * @return
+     * @return Request body.
      */
     private JSONObject generateRequestBody() throws JSONException {
         final JSONObject requestBody = new JSONObject();
@@ -155,7 +155,7 @@ public class ContactControllerIT {
      */
     @Test
     @DirtiesContext(classMode = DirtiesContext.ClassMode.BEFORE_EACH_TEST_METHOD)
-    public void getShouldReturnAllContactSets() throws JSONException, UserNotFoundException, JsonProcessingException {
+    public void getShouldReturnAllContactSets() throws UserNotFoundException, JsonProcessingException {
         UserDbo user = addTestUser();
         // Save example entry.
         ContactSet contactSet = new ContactSet();
@@ -182,7 +182,7 @@ public class ContactControllerIT {
 
 
         ObjectMapper mapper = new ObjectMapper();
-        List<ContactSet> userDboList = mapper.readValue(response.getBody(), new TypeReference<List<ContactSet>>() {
+        List<ContactSet> userDboList = mapper.readValue(response.getBody(), new TypeReference<>() {
         });
         assertThat(userDboList.size()).isEqualTo(1);
     }
@@ -214,7 +214,7 @@ public class ContactControllerIT {
                         String.class);
 
         // Verify correct function in ContactController is called.
-        verify(contactController).updateContactSet(eq("kkraus"), eq(contactSet.getId()));
+        verify(contactController).updateContactSet(eq("kkraus"), eq(contactSet.getId()), any());
 
         // Verify Request returns correct HTTP status code.
         assertThat(response.getStatusCode()).isEqualTo(HttpStatus.OK);
@@ -242,7 +242,7 @@ public class ContactControllerIT {
                         String.class);
 
         // Verify correct function in ContactController is called.
-        verify(contactController).updateContactSet(eq("kkraus"), eq(1L));
+        verify(contactController).updateContactSet(eq("kkraus"), eq(1L), any());
 
         // Verify Request returns correct HTTP status code.
         assertThat(response.getStatusCode()).isEqualTo(HttpStatus.NOT_FOUND);
@@ -269,7 +269,7 @@ public class ContactControllerIT {
                         String.class);
 
         // Verify correct function in ContactController is called.
-        verify(contactController).updateContactSet(eq("kkraus"), eq(1L));
+        verify(contactController).updateContactSet(eq("kkraus"), eq(1L), any());
 
         // Verify Request returns correct HTTP status code.
         assertThat(response.getStatusCode()).isEqualTo(HttpStatus.NOT_FOUND);

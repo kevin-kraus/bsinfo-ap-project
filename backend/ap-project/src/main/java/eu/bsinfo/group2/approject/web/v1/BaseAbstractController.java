@@ -1,5 +1,6 @@
 package eu.bsinfo.group2.approject.web.v1;
 
+import eu.bsinfo.group2.approject.exception.ContactSetNotFoundException;
 import eu.bsinfo.group2.approject.exception.UnauthorizedException;
 import eu.bsinfo.group2.approject.exception.UserAlreadyExistsException;
 import eu.bsinfo.group2.approject.exception.UserNotFoundException;
@@ -20,6 +21,11 @@ public abstract class BaseAbstractController {
     @ResponseStatus(HttpStatus.NOT_FOUND)
     @ExceptionHandler(UserNotFoundException.class)
     public void handleNotFound() {
+    }
+
+    @ResponseStatus(HttpStatus.NOT_FOUND)
+    @ExceptionHandler(ContactSetNotFoundException.class)
+    public void handleNotFoundContactSet() {
     }
 
     @ResponseStatus(HttpStatus.CONFLICT)
