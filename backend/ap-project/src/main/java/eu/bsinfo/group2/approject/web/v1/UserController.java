@@ -8,6 +8,7 @@ import eu.bsinfo.group2.approject.util.SuccessResult;
 import eu.bsinfo.group2.approject.web.v1.interfaces.UserApi;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
 import java.util.Optional;
 
 @RestController
@@ -24,6 +25,11 @@ public class UserController extends BaseAbstractController implements UserApi {
         Optional<UserDbo> user = userService.findUser(username);
         if (user.isEmpty()) throw new UserNotFoundException();
         else return user.get();
+    }
+    // TODO: implement getAllUsers
+    @Override
+    public Optional<List<UserDbo>> getAllUsers() {
+        return userService.getAllUser();
     }
 
     @Override

@@ -8,6 +8,7 @@ import eu.bsinfo.group2.approject.util.PasswordService;
 import eu.bsinfo.group2.approject.util.SuccessResult;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -51,6 +52,11 @@ public class UserServiceImpl implements UserService {
     @Override
     public Optional<UserDbo> findUser(String username) {
         return userRepository.findByUsername(username);
+    }
+
+    @Override
+    public Optional<List<UserDbo>> getAllUser() {
+        return userRepository.getAllUser();
     }
 
     private Boolean userAlreadyExists(String username) {
