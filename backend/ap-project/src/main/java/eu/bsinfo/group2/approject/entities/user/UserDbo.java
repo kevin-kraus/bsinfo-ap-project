@@ -8,6 +8,7 @@ import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.Set;
 
 @Data
 @NoArgsConstructor
@@ -30,6 +31,9 @@ public class UserDbo {
     private String emailAddress;
 
     private UserType userType;
+
+    @OneToMany
+    private Set<ContactSet> contactTypes;
 
     @CreationTimestamp
     private Date generatedAt;
