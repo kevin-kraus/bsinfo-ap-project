@@ -32,4 +32,13 @@ export class UserService {
                 }
             })
     }
+
+    public static async getAllUsers(): Promise<UserData[]> {
+        return await axios({
+            method: 'get',
+            url: UserService.baseUrl + "/users"
+        }).then(response => {
+            return response.data
+        })
+    }
 }

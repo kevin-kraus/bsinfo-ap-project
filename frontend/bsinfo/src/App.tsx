@@ -1,12 +1,12 @@
 import React from 'react';
 import './App.css';
-import {LoginPage} from "./pages/LoginPage/LoginPage";
 import 'bootstrap/dist/css/bootstrap.min.css';
+import {UserManagementPage} from "./pages/UserManagementPage/UserManagementPage";
 
 
 function App() {
   return (
-      <LoginPage/>
+      <UserManagementPage/>
   );
 }
 
