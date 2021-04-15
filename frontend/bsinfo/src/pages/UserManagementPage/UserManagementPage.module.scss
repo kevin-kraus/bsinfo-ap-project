@@ -1,0 +1,11 @@
+
+.container {
+  display: flex;
+  width: 100vw;
+  height: 100vh;
+  justify-content: center;
+  align-items: center;
+
+  background: linear-gradient(0deg, rgba(0, 0, 0, 0.5), rgba(255, 255, 255, 0.5)), url("assets/background_user_management.jpg");
+  background-size: cover;
+}
