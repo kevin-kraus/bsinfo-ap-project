@@ -1,12 +1,30 @@
 package eu.bsinfo.group2.approject.entities.user;
 
-import javax.persistence.Entity;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
+import javax.persistence.*;
+
+@Data
+@NoArgsConstructor
 @Entity
-public enum ContactSet {
-    EMAIL,
-    SKYPE,
-    TELEPHONE,
-    FAX,
-    ADDRESS,
+@Table(name = "contactsets")
+public class ContactSet {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
+
+    @ManyToOne
+    @JoinColumn(name = "userId", nullable = false)
+    // Prevent overfetching.
+    @JsonIgnore
+    private UserDbo user;
+
+    private ContactType contactType;
+
+    private String value;
+
 }
+
