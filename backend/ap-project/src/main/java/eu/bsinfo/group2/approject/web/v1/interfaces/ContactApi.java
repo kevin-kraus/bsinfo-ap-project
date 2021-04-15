@@ -23,7 +23,7 @@ public interface ContactApi {
     @GetMapping(value = "/api/v1/user/contact/{username}")
     List<ContactSet> getUserContactSets(@PathVariable("username") String username) throws UserNotFoundException;
 
-    @PatchMapping(value = "/api/v1/user/contact/{username}/{contactSetId}")
+    @PutMapping(value = "/api/v1/user/contact/{username}/{contactSetId}")
     ContactSet updateContactSet(@PathVariable("username") String username, @PathVariable("contactSetId") Long contactSetId) throws UserNotFoundException, ContactSetNotFoundException;
 
     @DeleteMapping(value = "/api/v1/user/contact/{username}/{contactSetId}")
