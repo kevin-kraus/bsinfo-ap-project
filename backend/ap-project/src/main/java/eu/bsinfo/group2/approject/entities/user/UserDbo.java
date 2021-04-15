@@ -43,4 +43,11 @@ public class UserDbo {
 
     @UpdateTimestamp
     private Date updatedAt;
+
+    @PrePersist
+    private void prePersist() {
+        if (userType == null) {
+            userType = UserType.STANDARD;
+        }
+    }
 }

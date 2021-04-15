@@ -4,9 +4,14 @@ import Button from "react-bootstrap/Button"
 import {LoginForm} from "../../components/LoginForm/LoginForm";
 import {RegistrationForm} from "../../components/RegistrationForm/RegistrationForm";
 
-export function LoginPage() {
+type LoginProps = {
+    mode: "login" | "registration"
+}
 
-    const [selectedMode, setSelectedMode] = useState("login")
+
+export function LoginPage({mode}: LoginProps) {
+
+    const [selectedMode, setSelectedMode] = useState(mode)
 
     function switchMode(e: any) {
         if (selectedMode === "login") {
