@@ -6,6 +6,8 @@ import eu.bsinfo.group2.approject.exception.UserNotFoundException;
 import eu.bsinfo.group2.approject.util.SuccessResult;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 public interface UserApi {
     /**
@@ -16,6 +18,14 @@ public interface UserApi {
      */
     @GetMapping(value = "/api/v1/user/{username}")
     UserDbo getUser(@PathVariable("username") String username) throws UserNotFoundException;
+
+    /**
+     * Gets all Users from the Database.
+     *
+     * @return User
+     */
+    @GetMapping(value = "/api/v1/users")
+    List<UserDbo> getAllUsers();
 
     /**
      * Creates a new User in the Database.
