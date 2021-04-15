@@ -3,6 +3,7 @@ package eu.bsinfo.group2.approject.web.v1;
 import eu.bsinfo.group2.approject.ApProjectApplication;
 import eu.bsinfo.group2.approject.entities.user.UserDbo;
 import eu.bsinfo.group2.approject.exception.UnauthorizedException;
+import eu.bsinfo.group2.approject.exception.UserAlreadyExistsException;
 import eu.bsinfo.group2.approject.exception.UserNotFoundException;
 import eu.bsinfo.group2.approject.repository.UserRepository;
 import eu.bsinfo.group2.approject.util.PasswordService;
@@ -59,7 +60,7 @@ public class LoginControllerIT {
      */
     @Test
     @DirtiesContext(classMode = DirtiesContext.ClassMode.BEFORE_EACH_TEST_METHOD)
-    public void shouldAuthenticateUser() throws JSONException, UnauthorizedException, UserNotFoundException {
+    public void shouldAuthenticateUser() throws JSONException, UserAlreadyExistsException, UnauthorizedException, UserNotFoundException {
         UserDbo user = new UserDbo();
         user.setUsername("testuser");
         user.setPassword(passwordService.encodePassword("testpassword"));
@@ -89,7 +90,7 @@ public class LoginControllerIT {
      */
     @Test
     @DirtiesContext(classMode = DirtiesContext.ClassMode.BEFORE_EACH_TEST_METHOD)
-    public void shouldReturn401IfWrongPassword() throws JSONException, UnauthorizedException, UserNotFoundException {
+    public void shouldReturn401IfWrongPassword() throws JSONException, UserAlreadyExistsException, UnauthorizedException, UserNotFoundException {
         UserDbo user = new UserDbo();
         user.setUsername("testuser");
         user.setPassword(passwordService.encodePassword("testPassword"));
@@ -119,7 +120,7 @@ public class LoginControllerIT {
      */
     @Test
     @DirtiesContext(classMode = DirtiesContext.ClassMode.BEFORE_EACH_TEST_METHOD)
-    public void shouldReturn404OnNonExistingUser() throws JSONException, UnauthorizedException, UserNotFoundException {
+    public void shouldReturn404OnNonExistingUser() throws JSONException, UserAlreadyExistsException, UnauthorizedException, UserNotFoundException {
         // Request Setup
         JSONObject requestBody = generateRequestBody();
         final HttpHeaders headers = new HttpHeaders();
