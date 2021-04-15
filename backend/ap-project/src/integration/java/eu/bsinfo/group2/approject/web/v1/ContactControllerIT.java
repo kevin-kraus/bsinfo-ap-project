@@ -98,6 +98,10 @@ public class ContactControllerIT {
         // Verify contactSet is correctly added to the Database.
         List<ContactSet> savedContacts = contactSetRepository.findByUserId(1L);
         assertThat(savedContacts.size()).isEqualTo(1);
+
+        // Verify one-to-many relationship is correctly added to the Database.
+        UserDbo user = userRepository.findByUsername("kkraus").get();
+        assertThat(user.getContactSets().size()).isEqualTo(1);
     }
 
     /**
