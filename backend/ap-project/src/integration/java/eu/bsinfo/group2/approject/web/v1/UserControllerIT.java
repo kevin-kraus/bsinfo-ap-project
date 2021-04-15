@@ -1,5 +1,8 @@
 package eu.bsinfo.group2.approject.web.v1;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import eu.bsinfo.group2.approject.ApProjectApplication;
 import eu.bsinfo.group2.approject.entities.user.UserDbo;
 import eu.bsinfo.group2.approject.exception.UserAlreadyExistsException;
@@ -17,6 +20,7 @@ import org.springframework.http.*;
 import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.ActiveProfiles;
 
+import java.util.List;
 import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -290,5 +294,43 @@ public class UserControllerIT {
         verify(userController).deleteUser(eq("testuser"));
     }
 
+
+    /**
+     * End-to-End Test if all users are returned correctly.
+     */
+    @Test
+    @DirtiesContext(classMode = DirtiesContext.ClassMode.BEFORE_EACH_TEST_METHOD)
+    public void shouldReturnAllUsers() throws UserNotFoundException, JsonProcessingException {
+        // Save user object, so that user exists
+        UserDbo existingUser1 = new UserDbo();
+        existingUser1.setId(1L);
+        existingUser1.setUsername("testuser");
+        existingUser1.setFirstName("Test");
+        UserDbo existingUser2 = new UserDbo();
+        existingUser2.setId(2L);
+        existingUser2.setUsername("testuser");
+        existingUser2.setFirstName("Test");
+        userRepository.save(existingUser1);
+        userRepository.save(existingUser2);
+
+
+        ResponseEntity<String> response =
+                restTemplate.exchange("/api/v1/users",
+                        HttpMethod.GET,
+                        null,
+                        String.class);
+
+        // Verify correct HTTP status code.
+        assertThat(response.getStatusCode()).isEqualTo(HttpStatus.OK);
+
+        // Verify correct function in UserController is called.
+        verify(userController).getAllUsers();
+
+        // Verify all Users are returned
+        ObjectMapper mapper = new ObjectMapper();
+        List<UserDbo> userDboList = mapper.readValue(response.getBody(), new TypeReference<List<UserDbo>>() {
+        });
+        assertThat(userDboList.size()).isEqualTo(2);
+    }
 
 }

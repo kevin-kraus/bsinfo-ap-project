@@ -1,5 +1,8 @@
 package eu.bsinfo.group2.approject.web.v1;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import eu.bsinfo.group2.approject.ApProjectApplication;
 import eu.bsinfo.group2.approject.entities.user.ContactSet;
 import eu.bsinfo.group2.approject.entities.user.ContactType;
@@ -152,7 +155,7 @@ public class ContactControllerIT {
      */
     @Test
     @DirtiesContext(classMode = DirtiesContext.ClassMode.BEFORE_EACH_TEST_METHOD)
-    public void getShouldReturnAllContactSets() throws JSONException, UserNotFoundException {
+    public void getShouldReturnAllContactSets() throws JSONException, UserNotFoundException, JsonProcessingException {
         UserDbo user = addTestUser();
         // Save example entry.
         ContactSet contactSet = new ContactSet();
@@ -177,7 +180,11 @@ public class ContactControllerIT {
         // Verify Request returns correct HTTP status code.
         assertThat(response.getStatusCode()).isEqualTo(HttpStatus.OK);
 
-        assertThat(response.getBody()).isNotNull();
+
+        ObjectMapper mapper = new ObjectMapper();
+        List<ContactSet> userDboList = mapper.readValue(response.getBody(), new TypeReference<List<ContactSet>>() {
+        });
+        assertThat(userDboList.size()).isEqualTo(1);
     }
 
     /**
@@ -217,7 +224,7 @@ public class ContactControllerIT {
 
 
     /**
-     * End-to-End Test if request overwrites ContactSet of a user.
+     * End-to-End Test if request returns 404 if user is not found.
      */
     @Test
     @DirtiesContext(classMode = DirtiesContext.ClassMode.BEFORE_EACH_TEST_METHOD)
@@ -242,7 +249,7 @@ public class ContactControllerIT {
     }
 
     /**
-     * End-to-End Test if request overwrites ContactSet of a user.
+     * End-to-End Test if request returns 404 if ContactSet is not found.
      */
     @Test
     @DirtiesContext(classMode = DirtiesContext.ClassMode.BEFORE_EACH_TEST_METHOD)
@@ -270,7 +277,7 @@ public class ContactControllerIT {
 
 
     /**
-     * End-to-End Test if request overwrites ContactSet of a user.
+     * End-to-End Test if request deletes ContactSet of a user.
      */
     @Test
     @DirtiesContext(classMode = DirtiesContext.ClassMode.BEFORE_EACH_TEST_METHOD)
@@ -306,7 +313,7 @@ public class ContactControllerIT {
     }
 
     /**
-     * End-to-End Test if request overwrites ContactSet of a user.
+     * returnes 404 if user is not found
      */
     @Test
     @DirtiesContext(classMode = DirtiesContext.ClassMode.BEFORE_EACH_TEST_METHOD)
@@ -331,7 +338,7 @@ public class ContactControllerIT {
     }
 
     /**
-     * End-to-End Test if request overwrites ContactSet of a user.
+     * End-to-End Test if request returns 404 if ContactSet is not found.
      */
     @Test
     @DirtiesContext(classMode = DirtiesContext.ClassMode.BEFORE_EACH_TEST_METHOD)
