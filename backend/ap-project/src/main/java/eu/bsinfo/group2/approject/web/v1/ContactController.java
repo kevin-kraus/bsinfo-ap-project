@@ -30,8 +30,8 @@ public class ContactController extends BaseAbstractController implements Contact
     }
 
     @Override
-    public ContactSet updateContactSet(String username, Long contactSetId) throws UserNotFoundException, ContactSetNotFoundException {
-        return contactService.updateContactSet(username, contactSetId);
+    public ContactSet updateContactSet(String username, Long contactSetId, ContactSet update) throws UserNotFoundException, ContactSetNotFoundException {
+        return contactService.updateContactSet(username, contactSetId, update);
     }
 
     @Override

@@ -7,7 +7,6 @@ import eu.bsinfo.group2.approject.util.SuccessResult;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 public interface UserApi {
@@ -26,7 +25,7 @@ public interface UserApi {
      * @return User
      */
     @GetMapping(value = "/api/v1/users")
-    Optional<List<UserDbo>> getAllUsers();
+    List<UserDbo> getAllUsers();
 
     /**
      * Creates a new User in the Database.

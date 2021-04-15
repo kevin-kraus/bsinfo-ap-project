@@ -12,7 +12,7 @@ public interface ContactService {
 
     List<ContactSet> getAllUserContactSets(String username) throws UserNotFoundException;
 
-    ContactSet updateContactSet(String username, Long contactSetId) throws UserNotFoundException, ContactSetNotFoundException;
+    ContactSet updateContactSet(String username, Long contactSetId, ContactSet update) throws UserNotFoundException, ContactSetNotFoundException;
 
     SuccessResult deleteContactSet(String username, Long contactSetId) throws UserNotFoundException, ContactSetNotFoundException;
 }
