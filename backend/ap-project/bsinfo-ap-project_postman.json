@@ -1,7 +1,7 @@
 {
   "info": {
     "_postman_id": "408cd01f-137e-4566-b958-7dbed8063a1c",
-    "name": "bsinfo-project",
+    "name": "bsinfo-ap-project",
     "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
   },
   "item": [
@@ -37,7 +37,7 @@
         {
           "name": "Create a new User",
           "request": {
-            "method": "PUT",
+            "method": "POST",
             "header": [
               {
                 "key": "Content-Type",
@@ -48,7 +48,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\n    \"username\": \"kkraus\",\n    \"password\": \"<password>\",\n    \"firstName\": \"Kevin\",\n    \"lastName\": \"Kraus\",\n    \"emailAddress\": \"kevin.kraus1@outlook.com\",\n    \"userType\": \"ADMIN\"\n}"
+              "raw": "{\n    \"username\": \"kkraus\",\n    \"password\": \"TestTest!\",\n    \"firstName\": \"Kevin\",\n    \"lastName\": \"Kraus\",\n    \"emailAddress\": \"kevin.kraus1@outlook.com\",\n    \"userType\": \"ADMIN\"\n}"
             },
             "url": {
               "raw": "http://localhost:8080/api/v1/user",
@@ -69,7 +69,7 @@
         {
           "name": "Update User",
           "request": {
-            "method": "POST",
+            "method": "PATCH",
             "header": [
               {
                 "key": "Content-Type",
@@ -80,10 +80,10 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\n    \"username\": \"kkraus\",\n    \"password\": \"Nemo1919!\",\n    \"firstName\": \"Kevin\",\n    \"lastName\": \"Kraus\",\n    \"emailAddress\": \"kevin.kraus1@outlook.com\",\n    \"userType\": \"ADMIN\"\n}"
+              "raw": "{\n    \"id\": 3,\n    \"username\": \"kkraus\",\n    \"firstName\": \"Peter\",\n    \"lastName\": \"Kraus\",\n    \"emailAddress\": \"kevin.kraus1@outlook.com\",\n    \"userType\": \"ADMIN\",\n    \"generatedAt\": \"2021-03-09T14:36:26.716+00:00\",\n    \"updatedAt\": \"2021-03-09T14:36:26.716+00:00\"\n}"
             },
             "url": {
-              "raw": "http://localhost:8080/api/v1/user",
+              "raw": "http://localhost:8080/api/v1/user/kkraus",
               "protocol": "http",
               "host": [
                 "localhost"
@@ -92,7 +92,8 @@
               "path": [
                 "api",
                 "v1",
-                "user"
+                "user",
+                "kkraus"
               ]
             }
           },
@@ -140,6 +141,79 @@
         {
           "name": "login",
           "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "name": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n\t\"username\": \"kkraus\",\n\t\"password\": \"TestTest!\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:8080/api/v1/login",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "v1",
+                "login"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "ContactSet",
+      "item": [
+        {
+          "name": "Create a new ContactSet for a User",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n\t\"contactType\": \"SKYPE\",\n\t\"value\": \"aaa\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:8080/api/v1/user/contact/kkraus",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "v1",
+                "user",
+                "contact",
+                "kkraus"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get all User ContactSets",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
             "method": "GET",
             "header": [],
             "body": {
@@ -147,7 +221,19 @@
               "raw": ""
             },
             "url": {
-              "raw": ""
+              "raw": "http://localhost:8080/api/v1/user/contact/kkraus",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "v1",
+                "user",
+                "contact",
+                "kkraus"
+              ]
             }
           },
           "response": []

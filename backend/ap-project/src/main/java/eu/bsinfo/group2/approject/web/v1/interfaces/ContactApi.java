@@ -2,12 +2,9 @@ package eu.bsinfo.group2.approject.web.v1.interfaces;
 
 import eu.bsinfo.group2.approject.entities.user.ContactSet;
 import eu.bsinfo.group2.approject.exception.UserNotFoundException;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
-import java.util.Set;
+import java.util.List;
 
 @RestController
 public interface ContactApi {
@@ -19,5 +16,9 @@ public interface ContactApi {
      * @return a set of contact information.
      */
     @PostMapping(value = "/api/v1/user/contact/{username}")
-    Set<ContactSet> setContactData(@PathVariable("username") String username, @RequestBody Set<ContactSet> contactInformation) throws UserNotFoundException;
+    ContactSet addContactSet(@PathVariable("username") String username, @RequestBody ContactSet contactInformation) throws UserNotFoundException;
+
+    @GetMapping(value = "/api/v1/user/contact/{username}")
+    List<ContactSet> getUserContactSets(@PathVariable("username") String username) throws UserNotFoundException;
+
 }

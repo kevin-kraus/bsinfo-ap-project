@@ -1,5 +1,6 @@
 package eu.bsinfo.group2.approject.entities.user;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -32,8 +33,10 @@ public class UserDbo {
 
     private UserType userType;
 
-    @OneToMany
-    private Set<ContactSet> contactTypes;
+    @OneToMany(mappedBy = "user")
+    // Break infinite recursion if getting an user.
+    @JsonIgnore
+    private Set<ContactSet> contactSets;
 
     @CreationTimestamp
     private Date generatedAt;
