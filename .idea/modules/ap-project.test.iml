@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module version="4">
+  <component name="ExternalSystem" externalSystem="GRADLE" externalSystemModuleGroup="eu.bsinfo.group2" externalSystemModuleType="sourceSet" externalSystemModuleVersion="0.0.1-SNAPSHOT" linkedProjectId="ap-project:test" linkedProjectPath="$MODULE_DIR$/../../backend/ap-project" rootProjectPath="$MODULE_DIR$/../../backend/ap-project" />
+  <component name="FacetManager">
+    <facet type="Spring" name="Spring">
+      <configuration />
+    </facet>
+    <facet type="web" name="Web">
+      <configuration>
+        <webroots />
+        <sourceRoots />
+      </configuration>
+    </facet>
+  </component>
+  <component name="TestModuleProperties" production-module="ap-project.main" />
+</module>
