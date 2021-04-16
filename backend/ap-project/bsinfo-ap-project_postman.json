@@ -1,244 +1,312 @@
 {
-  "info": {
-    "_postman_id": "408cd01f-137e-4566-b958-7dbed8063a1c",
-    "name": "bsinfo-ap-project",
-    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
-  },
-  "item": [
-    {
-      "name": "User",
-      "item": [
-        {
-          "name": "Find User",
-          "request": {
-            "method": "GET",
-            "header": [],
-            "body": {
-              "mode": "raw",
-              "raw": ""
-            },
-            "url": {
-              "raw": "http://localhost:8080/api/v1/user/kkraus",
-              "protocol": "http",
-              "host": [
-                "localhost"
-              ],
-              "port": "8080",
-              "path": [
-                "api",
-                "v1",
-                "user",
-                "kkraus"
-              ]
-            }
-          },
-          "response": []
-        },
-        {
-          "name": "Create a new User",
-          "request": {
-            "method": "POST",
-            "header": [
-              {
-                "key": "Content-Type",
-                "name": "Content-Type",
-                "value": "application/json",
-                "type": "text"
-              }
-            ],
-            "body": {
-              "mode": "raw",
-              "raw": "{\n    \"username\": \"kkraus\",\n    \"password\": \"TestTest!\",\n    \"firstName\": \"Kevin\",\n    \"lastName\": \"Kraus\",\n    \"emailAddress\": \"kevin.kraus1@outlook.com\",\n    \"userType\": \"ADMIN\"\n}"
-            },
-            "url": {
-              "raw": "http://localhost:8080/api/v1/user",
-              "protocol": "http",
-              "host": [
-                "localhost"
-              ],
-              "port": "8080",
-              "path": [
-                "api",
-                "v1",
-                "user"
-              ]
-            }
-          },
-          "response": []
-        },
-        {
-          "name": "Update User",
-          "request": {
-            "method": "PATCH",
-            "header": [
-              {
-                "key": "Content-Type",
-                "name": "Content-Type",
-                "type": "text",
-                "value": "application/json"
-              }
-            ],
-            "body": {
-              "mode": "raw",
-              "raw": "{\n    \"id\": 3,\n    \"username\": \"kkraus\",\n    \"firstName\": \"Peter\",\n    \"lastName\": \"Kraus\",\n    \"emailAddress\": \"kevin.kraus1@outlook.com\",\n    \"userType\": \"ADMIN\",\n    \"generatedAt\": \"2021-03-09T14:36:26.716+00:00\",\n    \"updatedAt\": \"2021-03-09T14:36:26.716+00:00\"\n}"
-            },
-            "url": {
-              "raw": "http://localhost:8080/api/v1/user/kkraus",
-              "protocol": "http",
-              "host": [
-                "localhost"
-              ],
-              "port": "8080",
-              "path": [
-                "api",
-                "v1",
-                "user",
-                "kkraus"
-              ]
-            }
-          },
-          "response": []
-        },
-        {
-          "name": "Delete User",
-          "request": {
-            "method": "DELETE",
-            "header": [
-              {
-                "key": "Content-Type",
-                "name": "Content-Type",
-                "type": "text",
-                "value": "application/json"
-              }
-            ],
-            "body": {
-              "mode": "raw",
-              "raw": ""
-            },
-            "url": {
-              "raw": "http://localhost:8080/api/v1/user/kkraus",
-              "protocol": "http",
-              "host": [
-                "localhost"
-              ],
-              "port": "8080",
-              "path": [
-                "api",
-                "v1",
-                "user",
-                "kkraus"
-              ]
-            }
-          },
-          "response": []
-        }
-      ],
-      "description": "All requests for User Entities."
-    },
-    {
-      "name": "Login",
-      "item": [
-        {
-          "name": "login",
-          "request": {
-            "method": "POST",
-            "header": [
-              {
-                "key": "Content-Type",
-                "name": "Content-Type",
-                "value": "application/json",
-                "type": "text"
-              }
-            ],
-            "body": {
-              "mode": "raw",
-              "raw": "{\n\t\"username\": \"kkraus\",\n\t\"password\": \"TestTest!\"\n}"
-            },
-            "url": {
-              "raw": "http://localhost:8080/api/v1/login",
-              "protocol": "http",
-              "host": [
-                "localhost"
-              ],
-              "port": "8080",
-              "path": [
-                "api",
-                "v1",
-                "login"
-              ]
-            }
-          },
-          "response": []
-        }
-      ]
-    },
-    {
-      "name": "ContactSet",
-      "item": [
-        {
-          "name": "Create a new ContactSet for a User",
-          "request": {
-            "method": "POST",
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/json",
-                "type": "text"
-              }
-            ],
-            "body": {
-              "mode": "raw",
-              "raw": "{\n\t\"contactType\": \"SKYPE\",\n\t\"value\": \"aaa\"\n}"
-            },
-            "url": {
-              "raw": "http://localhost:8080/api/v1/user/contact/kkraus",
-              "protocol": "http",
-              "host": [
-                "localhost"
-              ],
-              "port": "8080",
-              "path": [
-                "api",
-                "v1",
-                "user",
-                "contact",
-                "kkraus"
-              ]
-            }
-          },
-          "response": []
-        },
-        {
-          "name": "Get all User ContactSets",
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          },
-          "request": {
-            "method": "GET",
-            "header": [],
-            "body": {
-              "mode": "raw",
-              "raw": ""
-            },
-            "url": {
-              "raw": "http://localhost:8080/api/v1/user/contact/kkraus",
-              "protocol": "http",
-              "host": [
-                "localhost"
-              ],
-              "port": "8080",
-              "path": [
-                "api",
-                "v1",
-                "user",
-                "contact",
-                "kkraus"
-              ]
-            }
-          },
-          "response": []
-        }
-      ]
-    }
-  ]
+	"info": {
+		"_postman_id": "408cd01f-137e-4566-b958-7dbed8063a1c",
+		"name": "bsinfo-ap-project",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "User",
+			"item": [
+				{
+					"name": "Find User",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/v1/user/admin",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"user",
+								"admin"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create a new User",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"username\": \"admin\",\n    \"password\": \"admin\",\n    \"firstName\": \"Admin\",\n    \"lastName\": \"Admin\",\n    \"emailAddress\": \"admin@admin.com\",\n    \"userType\": \"ADMIN\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/v1/user",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"user"
+							]
+						},
+						"description": "Creates a new User in the Database.\n\nResponse Codes:\n200 - OK.\n409 - User with that username already exists."
+					},
+					"response": []
+				},
+				{
+					"name": "Update User",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"id\": 1,\n    \"username\": \"admin\",\n    \"firstName\": \"Admin\",\n    \"lastName\": \"NewLastName\",\n    \"emailAddress\": \"admin@admin.com\",\n    \"userType\": \"ADMIN\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/v1/user/admin",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"user",
+								"admin"
+							]
+						},
+						"description": "Updates a User in the Database\n\nResponse Codes:\n200 - OK.\n404 - User with that username not found."
+					},
+					"response": []
+				},
+				{
+					"name": "Delete User",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/v1/user/admin",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"user",
+								"admin"
+							]
+						},
+						"description": "Deletes a User in the Database.\n\nResponse Codes:\n200 - OK.\n404 - User with that username not found."
+					},
+					"response": []
+				}
+			],
+			"description": "All requests for User Entities."
+		},
+		{
+			"name": "Login",
+			"item": [
+				{
+					"name": "login",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"username\": \"admin\",\n\t\"password\": \"admin\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/v1/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"login"
+							]
+						},
+						"description": "Authenticates a User.\n\nResponse Codes:\n200 - OK.\n404 - User with that username not found.\n401 - Credentials wrong."
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "ContactSet",
+			"item": [
+				{
+					"name": "Get all User ContactSets",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/v1/user/contact/admin",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"user",
+								"contact",
+								"admin"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create a new ContactSet for a User",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"contactType\": \"FAX\",\n\t\"value\": \"+49123456789\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/v1/user/contact/admin",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"user",
+								"contact",
+								"admin"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update ContactSet",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"contactType\": \"SKYPE\",\n\t\"value\": \"aaa\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/v1/user/contact/admin/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"user",
+								"contact",
+								"admin",
+								"1"
+							]
+						},
+						"description": "Updates a ContactSet by its ID\n\nResponse Codes:\n200 - OK.\n404 - User or ContactSet with that username/ID not found."
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Contact Set",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/v1/user/contact/admin/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"user",
+								"contact",
+								"admin",
+								"1"
+							]
+						},
+						"description": "Deletes a ContactSet by its ID\n\nResponse Codes:\n200 - OK.\n404 - User or ContactSet with that username/ID not found."
+					},
+					"response": []
+				}
+			]
+		}
+	]
 }
