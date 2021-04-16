@@ -41,4 +41,15 @@ export class UserService {
             return response.data
         })
     }
+
+    public static async deleteUser(user: UserData): Promise<string> {
+        return axios({
+            method: 'DELETE',
+            url: UserService.baseUrl + "/user/" + user.username
+        }).then(response => {
+            return response.data;
+        }).catch(err => {
+            return err;
+        });
+    }
 }

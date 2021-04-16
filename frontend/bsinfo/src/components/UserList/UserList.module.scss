@@ -3,4 +3,15 @@
   width: clamp(1500px, 50%, 2500px);
   background: white;
   border-radius: 15px;
+  border: none;
+
+  .noUsers {
+    text-align: center;
+  }
+
+  td {
+    Button {
+      margin: 0 5px 0 5px
+    }
+  }
 }
