@@ -15,7 +15,7 @@ export function LoginForm() {
     const [validPassword, setPasswordValid] = useState("");
 
 
-    const [cookies, setCookie, removeCookie] = useCookies();
+    const [, setCookie,] = useCookies();
 
     async function loginClickHandler(e: any) {
         e.preventDefault()

@@ -8,15 +8,15 @@ import {useCookies} from "react-cookie";
 
 export function EditorPage() {
 
-    const [cookies, setCookie, removeCookie] = useCookies(['userInfo']);
+    const [cookies, ,] = useCookies(['userInfo']);
     useEffect(() => {
-        if (cookies.userInfo === undefined) {
-            removeCookie("userInfo")
-            window.location.href = "/login"
-        } else if (cookies.userInfo.username !== userId && cookies.userInfo.userType == "STANDARD") {
+        if (cookies.userInfo.username !== userId && cookies.userInfo.userType === "STANDARD") {
             window.location.href = "/edit/" + userId
+        } else if (cookies.userInfo === undefined) {
+            window.location.href = "/login"
         }
-    }, [cookies])
+
+    },)
     // @ts-ignore
     let {userId} = useParams();
     let [userData, setUserData] = useState<UserData>();

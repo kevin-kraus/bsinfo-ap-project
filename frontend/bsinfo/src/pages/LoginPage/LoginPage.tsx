@@ -11,7 +11,7 @@ type LoginProps = {
 
 
 export function LoginPage({mode}: LoginProps) {
-    const [cookies, setCookie, removeCookie] = useCookies(['userInfo']);
+    const [cookies, ,] = useCookies(['userInfo']);
     const [selectedMode, setSelectedMode] = useState(mode)
 
     function switchMode(e: any) {
