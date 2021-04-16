@@ -25,4 +25,13 @@ export class ContactService {
             return response.data
         })
     }
+
+    static async deleteUserContactData(id: number, username: string) {
+        return await axios({
+            method: 'DELETE',
+            url: ContactService.baseUrl + username + "/" + id,
+        }).then(response => {
+            return response.data
+        })
+    }
 }

@@ -37,6 +37,11 @@ export function ContactEditor(props: ContactEditorProps) {
         }
     }
 
+    async function deleteContactSet(id: number) {
+        await ContactService.deleteUserContactData(id, props.username);
+        fetchContactData()
+    }
+
     useEffect(() => {
         fetchContactData()
     }, [])
@@ -57,7 +62,8 @@ export function ContactEditor(props: ContactEditorProps) {
                 <tr>
                     <td>{element.contactType}</td>
                     <td>{element.value}</td>
-                    <td><Button variant={"danger"}><img src={trash}/></Button></td>
+                    <td><Button variant={"danger"} onClick={() => deleteContactSet(element.id!)}><img
+                        src={trash}/></Button></td>
                 </tr>
             ))}
 
@@ -80,7 +86,7 @@ export function ContactEditor(props: ContactEditorProps) {
 
             {userContactData !== undefined && userContactData.length === 0 &&
             <tr>
-                <td colSpan={3}><h1>Keine Kontaktmöglichkeiten gespeichert!</h1></td>
+                <td colSpan={3}><h4>Keine Kontaktmöglichkeiten gespeichert!</h4></td>
             </tr>
             }
             <tr>
