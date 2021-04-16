@@ -5,6 +5,7 @@ import Button from 'react-bootstrap/Button'
 import styles from "./ProfileEditor.module.scss"
 import {UserService} from "../../service/UserService";
 import {ContactEditor} from "../ContactEditor/ContactEditor";
+import {useHistory} from "react-router-dom";
 
 type EditorProps = {
     userData: UserData
@@ -16,6 +17,7 @@ export function ProfileEditor(props: EditorProps) {
     let [lastName, setLastName] = useState(props.userData.lastName);
     let [userType, setUserType] = useState(props.userData.userType);
     let [emailAddress, setEmailAddress] = useState(props.userData.emailAddress);
+    let history = useHistory();
 
     async function saveChanges(e: any) {
         e.preventDefault();
@@ -29,7 +31,7 @@ export function ProfileEditor(props: EditorProps) {
         let result = await UserService.saveChanges(newUserData)
         if (result.success) {
             alert("Änderungen wurden gespeichert!");
-            window.location.replace("/manageUsers");
+            history.push("/manageUsers");
         } else {
             alert("Irgentetwas ist schiefgelaufen!")
         }
@@ -66,7 +68,7 @@ export function ProfileEditor(props: EditorProps) {
             <Button variant="primary" type="submit" onClick={saveChanges}>
                 Speichern
             </Button>
-            <Button variant="danger" type="submit" onClick={() => window.location.replace("/manageUsers")}>
+            <Button variant="danger" type="submit" onClick={() => history.push("/manageUsers")}>
                 Abbrechen
             </Button>
         </Form>
