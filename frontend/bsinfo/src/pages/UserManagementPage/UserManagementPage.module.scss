@@ -1,5 +1,5 @@
 
-.container {
+.page {
   display: flex;
   width: 100vw;
   height: 100vh;
@@ -8,4 +8,25 @@
 
   background: linear-gradient(0deg, rgba(0, 0, 0, 0.5), rgba(255, 255, 255, 0.5)), url("assets/background_user_management.jpg");
   background-size: cover;
+
+  .container {
+    width: 100vw;
+
+    table {
+      margin: auto;
+    }
+
+    .header {
+      text-align: center;
+      margin-bottom: 50px;
+
+      h1 {
+        font-size: 32pt;
+        font-family: "Ubuntu", sans-serif;
+        font-weight: bold;
+        color: black;
+        text-shadow: 2px 2px lightslategrey;
+      }
+    }
+  }
 }
