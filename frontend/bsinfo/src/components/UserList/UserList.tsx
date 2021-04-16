@@ -4,9 +4,11 @@ import Button from 'react-bootstrap/Button'
 import styles from "./UserList.module.scss"
 import {UserService} from "../../service/UserService";
 import {UserData} from "../../types/UserData";
+import {useHistory} from "react-router-dom";
 
 export function UserList() {
     let [userData, setUserData] = useState<UserData[]>([]);
+    let history = useHistory();
 
     async function fetchUsers() {
         const users = await UserService.getAllUsers();
@@ -52,7 +54,7 @@ export function UserList() {
                             <td>{userData.userType}</td>
                             <td>
                                 <Button variant={"outline-info"}
-                                        onClick={() => window.location.href = "/edit/kkraus"}>Bearbeiten</Button>
+                                        onClick={() => window.location.href = "/edit/" + userData.username}>Bearbeiten</Button>
                                 <Button variant={"outline-danger"} onClick={() => deleteUser(userData)}>Löschen</Button>
                             </td>
                         </tr>
