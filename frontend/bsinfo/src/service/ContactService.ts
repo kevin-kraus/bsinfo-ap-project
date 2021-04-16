@@ -12,4 +12,17 @@ export class ContactService {
             return response.data
         })
     }
+
+    static async saveNewUserContactData(username: string, newType: string, newValue: string) {
+        return await axios({
+            method: 'POST',
+            url: ContactService.baseUrl + username,
+            data: {
+                contactType: newType,
+                value: newValue
+            }
+        }).then(response => {
+            return response.data
+        })
+    }
 }
