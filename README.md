@@ -7,13 +7,41 @@ GRUPPE 2 - KEVIN KRAUS & ABASSIN SALEH
 ---
 
 Dies ist das Repository, in welchem jegliche Arbeit und Dokumentation zum Abschlussprojekt von Kevin Kraus und Abassin Saleh in AP gemacht werden wird.
+### Lokales Starten
+#### Backend
+1. Im Archiv den Ordner backend öffnen.
+2. Den Befehl `java -jar bsinfo_gruppe2_be.jar` ausführen.
 
-### Datenbank
+#### Frontend
+1. Im Archiv Hauptverzeichnis den Ordner `frontend` öffnen
+2. Den gesamten Inhalt des Ordners `build` in das Root-Verzeichnis eines Webserver bewegen.
+3. Webserver aufrufen
+
+
+#### Datenbank
+1. Im Archiv den Ordner `database` öffnen
+2. Datenbank mit dem `init.sql` aufsetzen
+
+### Ports
+
+#### Datenbank
 User: `bsinfo`
 Passwort: `bsinfo`
 Datenbank: `bsinfo`
 Host: `localhost:3306`
-Starten mit `docker-compose up` im Hauptverzeichnis.
+
+#### Backend
+Port: `8080`
+API-Pfade: `http://localhost:8080/api/v1/...`
+Postman: Im Archiv als `postman.json` -> in Postman importieren
+
+#### Frontend
+Verfügbare Seiten: 
+- Login unter `/login`
+- Registrierung unter `/register`
+- Benutzerverwaltung unter `/userManagement`
+- Bearbeitung eines Benutzers unter `/edit/{username}`
+- Logout unter `/logout`
 
 ---
 <p style="text-align: center;"> © 2021 - Kevin Kraus | Abassin Saleh </p>
