@@ -17,7 +17,7 @@ export function EditorPage() {
 
     useEffect(() => {
         fetchUser(userId);
-    }, userId)
+    })
 
     return (
         <div className={styles.page}>

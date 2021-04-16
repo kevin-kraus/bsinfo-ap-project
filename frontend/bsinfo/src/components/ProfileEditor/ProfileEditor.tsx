@@ -29,6 +29,7 @@ export function ProfileEditor(props: EditorProps) {
         let result = await UserService.saveChanges(newUserData)
         if (result.success) {
             alert("Änderungen wurden gespeichert!");
+            window.location.replace("/manageUsers");
         } else {
             alert("Irgentetwas ist schiefgelaufen!")
         }
@@ -61,7 +62,7 @@ export function ProfileEditor(props: EditorProps) {
             <Button variant="primary" type="submit" onClick={saveChanges}>
                 Speichern
             </Button>
-            <Button variant="danger" type="submit">
+            <Button variant="danger" type="submit" onClick={() => window.location.replace("/manageUsers")}>
                 Abbrechen
             </Button>
         </Form>

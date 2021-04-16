@@ -51,7 +51,8 @@ export function UserList() {
                             <td>{userData.emailAddress}</td>
                             <td>{userData.userType}</td>
                             <td>
-                                <Button variant={"outline-info"}>Bearbeiten</Button>
+                                <Button variant={"outline-info"}
+                                        onClick={() => window.location.href = "/edit/kkraus"}>Bearbeiten</Button>
                                 <Button variant={"outline-danger"} onClick={() => deleteUser(userData)}>Löschen</Button>
                             </td>
                         </tr>
