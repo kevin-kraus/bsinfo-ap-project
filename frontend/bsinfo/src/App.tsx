@@ -4,6 +4,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import {UserManagementPage} from "./pages/UserManagementPage/UserManagementPage";
 import {BrowserRouter as Router, Redirect, Route, Switch} from "react-router-dom"
 import {LoginPage} from "./pages/LoginPage/LoginPage";
+import {EditorPage} from "./pages/EditorPage/EditorPage";
 
 function App() {
     return (
@@ -17,6 +18,9 @@ function App() {
                 </Route>
                 <Route path={"/manageUsers"}>
                     <UserManagementPage/>
+                </Route>
+                <Route path={"/edit/:userId"}>
+                    <EditorPage/>
                 </Route>
                 <Route path={"/"}>
                     <Redirect to={"/login"}/>

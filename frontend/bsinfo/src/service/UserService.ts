@@ -9,7 +9,7 @@ export class UserService {
 
     public static async registerNewUser(data: UserData): Promise<UserResponse> {
         return await axios({
-            method: 'post',
+            method: 'POST',
             url: UserService.baseUrl + "/user",
             data: data
         }).then(response => {
@@ -35,7 +35,7 @@ export class UserService {
 
     public static async getAllUsers(): Promise<UserData[]> {
         return await axios({
-            method: 'get',
+            method: 'GET',
             url: UserService.baseUrl + "/users"
         }).then(response => {
             return response.data
@@ -51,5 +51,42 @@ export class UserService {
         }).catch(err => {
             return err;
         });
+    }
+
+    public static async fetchUser(username: string): Promise<UserData> {
+        return axios({
+            method: 'GET',
+            url: UserService.baseUrl + "/user/" + username
+        }).then(response => {
+            return response.data;
+        }).catch(err => {
+            return err;
+        });
+    }
+
+    static async saveChanges(userData: UserData): Promise<UserResponse> {
+        return await axios({
+            method: 'PUT',
+            url: UserService.baseUrl + "/user/" + userData.username,
+            data: userData
+        }).then(response => {
+            return {
+                success: true,
+                userData: response.data
+            }
+        })
+            .catch(error => {
+                if (error.response.status === 404) {
+                    return {
+                        success: false,
+                        errorCause: ErrorCause.NOT_FOUND
+                    }
+                } else {
+                    return {
+                        success: false,
+                        errorCause: ErrorCause.UNKNOWN
+                    }
+                }
+            })
     }
 }
