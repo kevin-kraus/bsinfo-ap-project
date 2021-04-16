@@ -4,6 +4,7 @@ import eu.bsinfo.group2.approject.entities.user.UserDbo;
 import eu.bsinfo.group2.approject.entities.user.UserType;
 import eu.bsinfo.group2.approject.exception.UserAlreadyExistsException;
 import eu.bsinfo.group2.approject.exception.UserNotFoundException;
+import eu.bsinfo.group2.approject.repository.ContactSetRepository;
 import eu.bsinfo.group2.approject.repository.UserRepository;
 import eu.bsinfo.group2.approject.util.PasswordService;
 import org.junit.jupiter.api.Test;
@@ -24,6 +25,9 @@ class UserServiceImplTest {
     UserRepository userRepository;
 
     @Mock
+    ContactSetRepository contactSetRepository;
+
+    @Mock
     PasswordService passwordService;
 
     private UserDbo newUser() {
@@ -42,7 +46,7 @@ class UserServiceImplTest {
      */
     @Test()
     void createUser() throws UserAlreadyExistsException {
-        UserServiceImpl cut = new UserServiceImpl(userRepository, passwordService);
+        UserServiceImpl cut = new UserServiceImpl(userRepository, passwordService, contactSetRepository);
         cut.createUser(newUser());
         verify(userRepository, times(1)).save(any());
     }
@@ -52,7 +56,7 @@ class UserServiceImplTest {
      */
     @Test()
     void createUserShouldThrow() {
-        UserServiceImpl cut = new UserServiceImpl(userRepository, passwordService);
+        UserServiceImpl cut = new UserServiceImpl(userRepository, passwordService, contactSetRepository);
         when(userRepository.findByUsername("testuser")).thenReturn(Optional.of(newUser()));
         assertThrows(UserAlreadyExistsException.class, () -> cut.createUser(newUser()));
     }
@@ -62,7 +66,7 @@ class UserServiceImplTest {
      */
     @Test
     void updateUser() throws UserNotFoundException {
-        UserServiceImpl cut = new UserServiceImpl(userRepository, passwordService);
+        UserServiceImpl cut = new UserServiceImpl(userRepository, passwordService, contactSetRepository);
         when(userRepository.findByUsername("testuser")).thenReturn(Optional.of(newUser()));
         UserDbo updatedUser = newUser();
         updatedUser.setId(1L);
@@ -78,7 +82,7 @@ class UserServiceImplTest {
      */
     @Test
     void updateUserShouldThrow() {
-        UserServiceImpl cut = new UserServiceImpl(userRepository, passwordService);
+        UserServiceImpl cut = new UserServiceImpl(userRepository, passwordService, contactSetRepository);
         UserDbo updatedUser = newUser();
         updatedUser.setFirstName("Test1");
         assertThrows(UserNotFoundException.class, () -> cut.updateUser("testuser", updatedUser));
@@ -89,7 +93,7 @@ class UserServiceImplTest {
      */
     @Test
     void deleteUser() throws UserNotFoundException {
-        UserServiceImpl cut = new UserServiceImpl(userRepository, passwordService);
+        UserServiceImpl cut = new UserServiceImpl(userRepository, passwordService, contactSetRepository);
         UserDbo userWithId = newUser();
         userWithId.setId(1L);
         when(userRepository.findByUsername("testuser")).thenReturn(Optional.of(userWithId));
@@ -102,7 +106,7 @@ class UserServiceImplTest {
      */
     @Test
     void deleteUserShouldThrow() {
-        UserServiceImpl cut = new UserServiceImpl(userRepository, passwordService);
+        UserServiceImpl cut = new UserServiceImpl(userRepository, passwordService, contactSetRepository);
         assertThrows(UserNotFoundException.class, () -> cut.deleteUser("testuser"));
     }
 }
