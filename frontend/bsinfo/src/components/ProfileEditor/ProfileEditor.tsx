@@ -17,7 +17,6 @@ export function ProfileEditor(props: EditorProps) {
     let [userType, setUserType] = useState(props.userData.userType);
     let [emailAddress, setEmailAddress] = useState(props.userData.emailAddress);
 
-
     async function saveChanges(e: any) {
         e.preventDefault();
         let newUserData: UserData = {
