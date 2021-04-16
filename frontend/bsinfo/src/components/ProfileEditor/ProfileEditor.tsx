@@ -4,6 +4,7 @@ import {UserData} from "../../types/UserData";
 import Button from 'react-bootstrap/Button'
 import styles from "./ProfileEditor.module.scss"
 import {UserService} from "../../service/UserService";
+import {ContactEditor} from "../ContactEditor/ContactEditor";
 
 type EditorProps = {
     userData: UserData
@@ -58,6 +59,10 @@ export function ProfileEditor(props: EditorProps) {
                                 onChange={() => setUserType("STANDARD")}
                                 type={"radio"}/>
                 </div>
+            </Form.Group>
+            <Form.Group>
+                <Form.Label>Kontaktmöglichkeiten</Form.Label>
+                <ContactEditor username={props.userData.username}/>
             </Form.Group>
             <Button variant="primary" type="submit" onClick={saveChanges}>
                 Speichern
