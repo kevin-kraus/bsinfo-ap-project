@@ -5,10 +5,12 @@ import eu.bsinfo.group2.approject.exception.UnauthorizedException;
 import eu.bsinfo.group2.approject.exception.UserAlreadyExistsException;
 import eu.bsinfo.group2.approject.exception.UserNotFoundException;
 import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
+@CrossOrigin(origins = "http://localhost:3000", maxAge = 3600)
 @RestController
 public abstract class BaseAbstractController {
 
