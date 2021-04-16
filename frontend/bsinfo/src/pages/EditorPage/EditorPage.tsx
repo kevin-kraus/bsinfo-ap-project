@@ -4,8 +4,19 @@ import {UserData} from "../../types/UserData";
 import {UserService} from "../../service/UserService";
 import {ProfileEditor} from "../../components/ProfileEditor/ProfileEditor";
 import styles from "./EditorPage.module.scss"
+import {useCookies} from "react-cookie";
 
 export function EditorPage() {
+
+    const [cookies, setCookie, removeCookie] = useCookies(['userInfo']);
+    useEffect(() => {
+        if (cookies.userInfo === undefined) {
+            removeCookie("userInfo")
+            window.location.href = "/login"
+        } else if (cookies.userInfo.username !== userId && cookies.userInfo.userType == "STANDARD") {
+            window.location.href = "/edit/" + userId
+        }
+    }, [cookies])
     // @ts-ignore
     let {userId} = useParams();
     let [userData, setUserData] = useState<UserData>();

@@ -6,6 +6,7 @@ import styles from "./ProfileEditor.module.scss"
 import {UserService} from "../../service/UserService";
 import {ContactEditor} from "../ContactEditor/ContactEditor";
 import {useHistory} from "react-router-dom";
+import {useCookies} from "react-cookie"
 
 type EditorProps = {
     userData: UserData
@@ -18,6 +19,8 @@ export function ProfileEditor(props: EditorProps) {
     let [userType, setUserType] = useState(props.userData.userType);
     let [emailAddress, setEmailAddress] = useState(props.userData.emailAddress);
     let history = useHistory();
+
+    const [cookies, setCookie, removeCookie] = useCookies(['userInfo']);
 
     async function saveChanges(e: any) {
         e.preventDefault();
@@ -51,6 +54,7 @@ export function ProfileEditor(props: EditorProps) {
                 <Form.Label>E-Mail Adresse</Form.Label>
                 <Form.Control type="email" value={emailAddress} onChange={e => setEmailAddress(e.target.value)}/>
             </Form.Group>
+            {cookies.userInfo.userType == "ADMIN" &&
             <Form.Group>
                 <Form.Label>Benutzer-Typ</Form.Label>
                 <div>
@@ -61,6 +65,7 @@ export function ProfileEditor(props: EditorProps) {
                                 type={"radio"}/>
                 </div>
             </Form.Group>
+            }
             <Form.Group>
                 <Form.Label>Kontaktmöglichkeiten</Form.Label>
                 <ContactEditor username={props.userData.username}/>
