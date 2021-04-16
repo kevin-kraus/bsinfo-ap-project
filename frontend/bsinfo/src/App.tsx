@@ -5,6 +5,7 @@ import {UserManagementPage} from "./pages/UserManagementPage/UserManagementPage"
 import {BrowserRouter as Router, Redirect, Route, Switch} from "react-router-dom"
 import {LoginPage} from "./pages/LoginPage/LoginPage";
 import {EditorPage} from "./pages/EditorPage/EditorPage";
+import {LogoutPage} from "./pages/LogoutPage";
 
 function App() {
     return (
@@ -21,6 +22,9 @@ function App() {
                 </Route>
                 <Route path={"/edit/:userId"}>
                     <EditorPage/>
+                </Route>
+                <Route path={"/logout"}>
+                    <LogoutPage/>
                 </Route>
                 <Route path={"/"}>
                     <Redirect to={"/login"}/>
