@@ -4,11 +4,9 @@ import Button from 'react-bootstrap/Button'
 import styles from "./UserList.module.scss"
 import {UserService} from "../../service/UserService";
 import {UserData} from "../../types/UserData";
-import {useHistory} from "react-router-dom";
 
 export function UserList() {
     let [userData, setUserData] = useState<UserData[]>([]);
-    let history = useHistory();
 
     async function fetchUsers() {
         const users = await UserService.getAllUsers();

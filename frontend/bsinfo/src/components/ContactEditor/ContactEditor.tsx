@@ -44,7 +44,7 @@ export function ContactEditor(props: ContactEditorProps) {
 
     useEffect(() => {
         fetchContactData()
-    }, [])
+    })
 
 
     return (
@@ -63,7 +63,7 @@ export function ContactEditor(props: ContactEditorProps) {
                     <td>{element.contactType}</td>
                     <td>{element.value}</td>
                     <td><Button variant={"danger"} onClick={() => deleteContactSet(element.id!)}><img
-                        src={trash}/></Button></td>
+                        src={trash} alt={"Löschen"}/></Button></td>
                 </tr>
             ))}
 
@@ -80,7 +80,8 @@ export function ContactEditor(props: ContactEditorProps) {
                 <td>
                     <Form.Control type="text" placeholder="+491631234567"
                                   onChange={(e) => setNewValue(e.target.value)}/></td>
-                <td><Button variant={"success"} onClick={() => saveNewValues()}><img src={check}/></Button></td>
+                <td><Button variant={"success"} onClick={() => saveNewValues()}><img src={check}
+                                                                                     alt={"Löschen"}/></Button></td>
             </tr>
             }
 

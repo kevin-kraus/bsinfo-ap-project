@@ -20,7 +20,7 @@ export function ProfileEditor(props: EditorProps) {
     let [emailAddress, setEmailAddress] = useState(props.userData.emailAddress);
     let history = useHistory();
 
-    const [cookies, setCookie, removeCookie] = useCookies(['userInfo']);
+    const [cookies, ,] = useCookies(['userInfo']);
 
     async function saveChanges(e: any) {
         e.preventDefault();
@@ -54,7 +54,7 @@ export function ProfileEditor(props: EditorProps) {
                 <Form.Label>E-Mail Adresse</Form.Label>
                 <Form.Control type="email" value={emailAddress} onChange={e => setEmailAddress(e.target.value)}/>
             </Form.Group>
-            {cookies.userInfo.userType == "ADMIN" &&
+            {cookies.userInfo.userType === "ADMIN" &&
             <Form.Group>
                 <Form.Label>Benutzer-Typ</Form.Label>
                 <div>
