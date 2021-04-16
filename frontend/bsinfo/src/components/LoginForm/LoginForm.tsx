@@ -4,6 +4,7 @@ import Button from 'react-bootstrap/Button'
 import styles from './LoginForm.module.scss';
 import {validateLoginData} from "../../service/LoginService";
 import {ErrorCause} from "../../types/ErrorCause";
+import {useCookies} from "react-cookie";
 
 export function LoginForm() {
 
@@ -13,6 +14,8 @@ export function LoginForm() {
     const [validUsername, setUsernameValid] = useState("");
     const [validPassword, setPasswordValid] = useState("");
 
+
+    const [cookies, setCookie, removeCookie] = useCookies();
 
     async function loginClickHandler(e: any) {
         e.preventDefault()
@@ -25,6 +28,7 @@ export function LoginForm() {
         if (result.success) {
             setPasswordValid("true")
             setUsernameValid("true")
+            setCookie("userInfo", result.userData)
         } else if (result.errorCause === ErrorCause.NOT_FOUND) {
             setUsernameValid("false");
             setPasswordValid("false");
